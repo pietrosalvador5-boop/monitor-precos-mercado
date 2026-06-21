@@ -1,0 +1,57 @@
+name: Coleta semanal de preços
+
+on:
+  schedule:
+    # 09:00 no horário de Brasília (UTC-3) = 12:00 UTC.
+    # Atenção: GitHub Actions agenda em UTC e pode atrasar alguns minutos
+    # em horários de pico; não é garantia de execução no minuto exato.
+    - cron: "0 12 * * 1"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  coleta:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Baixar repositório
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Instalar dependências
+        run: |
+          pip install -r requirements.txt
+          python -m playwright install --with-deps chromium
+
+      - name: Rodar coletor
+        env:
+          CAMINHO_EXCEL: "monitor_precos_zaffari_pao_de_acucar.xlsx"
+          HEADLESS: "true"
+          SLEEP_SECONDS: "2"
+        run: |
+          python src/coletor.py
+
+      - name: Guardar log de erros como artefato
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: log-coleta-${{ github.run_id }}
+          path: |
+            saidas/erros_ultima_coleta.json
+            saidas/historico_precos_long.csv
+          retention-days: 90
+
+      - name: Comitar resultados de volta no repositório
+        if: always()
+        run: |
+          git config user.name "bot-coleta-precos"
+          git config user.email "actions@users.noreply.github.com"
+          git add saidas/historico_precos_long.csv monitor_precos_zaffari_pao_de_acucar.xlsx
+          git diff --cached --quiet || git commit -m "Coleta semanal de preços ($(date -u +'%Y-%m-%d'))"
+          git push
