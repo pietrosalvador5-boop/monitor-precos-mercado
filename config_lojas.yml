@@ -1,0 +1,17 @@
+lojas:
+  zaffari:
+    nome_planilha: Zaffari
+    url_inicial: "https://www.zaffari.com.br/"
+    busca_url: null
+    usar_busca_visual: true
+  pao_de_acucar:
+    nome_planilha: Pao_de_Acucar
+    url_inicial: "https://www.paodeacucar.com/"
+    busca_url: "https://www.paodeacucar.com/busca?terms={query}"
+    usar_busca_visual: false
+coleta:
+  headless: true
+  timeout_ms: 45000
+  max_cards_por_busca: 40
+  dormir_entre_buscas_segundos: 2
+  bloquear_itens_restritos: true

@@ -1,0 +1,7 @@
+Total de campos <input> encontrados: 5
+
+[0] type='text' name='' placeholder='Pesquise produtos ou marcas' id='' class='vtex-styleguide-9-x-input ma0 border-box vtex-styleguide-9-x-hideDecorators vtex-styleguide-9-x-noAppearance br2  br-0 br--left  w-100 bn outline-0 bg-base c-on-base b--muted-4 hover-b--muted-3 t-body pl5 '
+[1] type='text' name='newsletter' placeholder='Nome' id='newsletter-input-name' class='vtex-styleguide-9-x-input ma0 border-box vtex-styleguide-9-x-hideDecorators vtex-styleguide-9-x-noAppearance br2   w-100 bn outline-0 bg-base c-on-base b--muted-4 hover-b--muted-3 t-body ph5 '
+[2] type='email' name='newsletter' placeholder='Email' id='newsletter-input-email' class='vtex-styleguide-9-x-input ma0 border-box vtex-styleguide-9-x-hideDecorators vtex-styleguide-9-x-noAppearance br2   w-100 bn outline-0 bg-base c-on-base b--muted-4 hover-b--muted-3 t-body ph5 '
+[3] type='checkbox' name='newsletter-estado-rs' placeholder='' id='newsletter-checkbox-estado-rs' class='vtex-checkbox__input h1 w1 absolute o-0 pointer'
+[4] type='checkbox' name='newsletter-estado-sp' placeholder='' id='newsletter-checkbox-estado-sp' class='vtex-checkbox__input h1 w1 absolute o-0 pointer'
